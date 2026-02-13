@@ -16,10 +16,16 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@eslint/js": "^10.0.1",
     "dotenv": "^17.2.4",
     "drizzle-orm": "^0.45.1",
+    "eslint-plugin-jsdoc": "^62.5.4",
+    "eslint-plugin-n": "^17.23.2",
+    "eslint-plugin-promise": "^7.2.1",
     "express": "^5.2.1",
-    "pg": "^8.18.0"
+    "globals": "^17.3.0",
+    "pg": "^8.18.0",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@types/pg": "^8.16.0",
