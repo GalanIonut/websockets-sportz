@@ -15,7 +15,7 @@ const MAX_LIMIT = 100; // Maximum number of matches to return in a single reques
 matchRouter.get("/", async (req, res) => {
   const parsed = listMatchesQuerySchema.safeParse(req.query);
   if (!parsed.success) {
-    return res.status(400).json({ error: parsed.error.errors });
+    return res.status(400).json({ error: parsed.error.issues });
   }
 
   const limit = Math.min(parsed.data.limit || 50, MAX_LIMIT); // Cap the limit to prevent abuse
@@ -30,12 +30,10 @@ matchRouter.get("/", async (req, res) => {
     res.json({ data });
   } catch (e) {
     console.error("Error fetching matches:", e);
-    res
-      .status(500)
-      .json({
-        error: "Failed to fetch matches",
-        details: e.message || e.toString(),
-      });
+    res.status(500).json({
+      error: "Failed to fetch matches",
+      details: e.message || e.toString(),
+    });
   }
 });
 
@@ -64,8 +62,9 @@ matchRouter.post("/", async (req, res) => {
     res.status(201).json({ data: event });
   } catch (e) {
     console.error("Error creating match:", e); // Add logging for server side
-    res
-      .status(500)
-      .json({ error: "Failed to create match", details: e.message || e.toString() });
+    res.status(500).json({
+      error: "Failed to create match",
+      details: e.message || e.toString(),
+    });
   }
 });
